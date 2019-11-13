@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">
+      <span>{{message}}</span>
+      <!-- 防网络延迟等情况直接显示{{message}} -->
+      <span v-text="message"></span>
+      <!-- 少用，防XSS攻击 -->
+      <span v-html="todo"></span>
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello 2oops',
+          todo: '<h2>what to do </h2>'
+        }
+      })
+    </script>
+</html>

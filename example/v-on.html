@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">
+      <span>{{record}}</span>
+      <span>
+        <button @click="add">add</button>
+        <button @click="reduce">reduce</button>
+        <input @keyup.13="change" v-model="changeNum">
+        <!-- trim lazy -->
+        <input @keyup.13="change" v-model.number="changeNum">
+
+        <input type="checkbox" id="isTrue" v-model="isTrue">
+        <label for="isTrue">{{isTrue}}</label>
+        <p>
+          <span>{{changeNum}}</span>
+        </p>
+      </span>
+
+      <hr>
+      <p>
+        <input type="checkbox" id="first" v-model="name" value="panda">
+        <label for="first">panda</label>
+        <input type="checkbox" id="second" v-model="name" value="banana">
+        <label for="second">banana</label>
+        <input type="checkbox" id="thrid" v-model="name" value="monkey">
+        <label for="thrid">monkey</label>
+      </p>
+      <p>{{name}}</p>
+
+      <hr>
+      <p>
+        <input type="radio" id="first" v-model="sex" value="girl">
+        <label for="first">girl</label>
+        <input type="radio" id="second" v-model="sex" value="boy">
+        <label for="second">boy</label>
+        <input type="radio" id="thrid" v-model="sex" value="secret">
+        <label for="thrid">secret</label>
+      </p>
+      <p>{{sex}}</p>
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          record: 0,
+          changeNum: null,
+          isTrue: true,
+          name: [],
+          sex: []
+        },
+        methods: {
+          add() {
+            this.record ++
+          },
+
+          reduce() {
+            this.record --
+          },
+
+          change() {
+            this.record = this.record + parseInt(this.changeNum)
+          }
+        },
+      })
+    </script>
+</html>
