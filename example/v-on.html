@@ -4,6 +4,14 @@
     <title>hello 2oops</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+      .right {
+        color: red;
+      }
+      .wrong {
+        color: green;
+      }
+    </style>
   <body>
     <h4>hello 2oops</h4>
     <hr>
@@ -45,6 +53,17 @@
         <label for="thrid">secret</label>
       </p>
       <p>{{sex}}</p>
+
+      <hr>
+      <div :class="{right: isTrue}">isTrue</div>
+      <div :class="[right, wrong]">Wrong</div>
+      <div :style="myStyle">Style-bind</div>
+
+      <hr>
+      <!-- v-pre v-cloak v-once -->
+      <div v-pre>{{record}}原样显示</div>
+      <div v-cloak>渲染完成后才显示</div>
+      <div v-once>{{record}}</div>
     </div>
     <script type="text/javascript">
       var app = new Vue({
@@ -53,6 +72,8 @@
           record: 0,
           changeNum: null,
           isTrue: true,
+          className: 'right',
+          myStyle: {color: 'blue'},
           name: [],
           sex: []
         },
