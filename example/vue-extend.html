@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+    <author></author>
+    <div id="author"></div>
+
+    <script type="text/javascript">
+      var authorExtend = Vue.extend({
+        template: "<p><a :href='authorUrl'>{{authorName}}</a></p>",
+        data:function() {
+          return {
+            authorName: 'baidu',
+            authorUrl: 'http://www.baidu.com'
+          }
+        }
+      })
+      
+      new authorExtend().$mount('#author')
+      new authorExtend().$mount('author')
+    </script>
+</html>
