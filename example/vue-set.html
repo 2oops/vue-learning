@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">{{message}}
+      <ul>
+        <li v-for="item in arr">{{item}}</li>
+      </ul>
+    </div>
+
+    <!-- 注意这里写在app节点外 -->
+    <p>
+      <button onclick="add()">change</button>
+    </p>
+
+    <script type="text/javascript">
+
+      function add() {
+        // Vue.set(outData, 'message', 'setting')
+        // Vue.set解决数组内部监听不到的问题
+        Vue.set(outData.arr, 1, 'bbb')
+        // app.arr[1] = 'ddd'
+        // app.message = 'app.message'
+        // outData.message = 'outData.message'
+      }
+      var outData = {
+        message: '2oops',
+        arr: ['a', 'b', 'c']
+      }
+      var app = new Vue({
+        el: '#app',
+        data: outData
+      })
+    </script>
+</html>
