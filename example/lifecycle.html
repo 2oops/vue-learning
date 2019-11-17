@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">
+      <div>
+          {{count}}
+          <button @click="add">add</button>
+      </div>
+    </div>
+    <button onclick="app.$destroy()">销毁</button>
+
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          count: 0
+        },
+        // beforeCreate Created beforeMount mounted beforeUpdate updated
+        beforeDestroy() {
+          console.log('beforeDestroy')
+        },
+
+        destroyed() {
+          console.log('destroyed')
+        },
+
+        methods: {
+          add() {
+            this.count ++
+          },
+        },
+      })
+    </script>
+</html>
