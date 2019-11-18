@@ -10,7 +10,10 @@
 
     <div id="app">{{message}}
       <oops></oops>
-      <Part></Part>
+      <!-- 注意上面这个here是没有冒号的 -->
+      <Part here="China"></Part>
+      <Part :here="message"></Part>
+      <panda></panda>
     </div>
 
     <template id="app2">
@@ -25,6 +28,21 @@
       Vue.component('oops', {
         template: `<h2>全局component</h2>`
       })
+      
+      var city = {
+        template: `<div>Sichuan</div>`
+      }
+      // 注意city声明在前
+      var pandaComponent = {
+        template: `<div style="color: red;">
+        <city></city>
+        <p>this is my panda</p>
+        </div>`,
+        components: {
+          "city": city
+        }
+      }
+
       var app = new Vue({
         el: '#app',
         data: {
@@ -34,8 +52,10 @@
         // 局部component, 不能使用aPart小驼峰写法
         components: {
           "Part": {
-            template: `<h2>局部component</h2>`
-          }
+            template: `<h2>Panda from {{ here }}</h2>`,
+            props: ['here']
+          },
+          "panda": pandaComponent
         }
 
         // 三种模板形式
