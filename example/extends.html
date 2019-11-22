@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">${temp}
+      <button @click="add">ADD</button>
+    </div>
+    <script type="text/javascript">
+      // 全局的混入 => mixins混入 => 原生(构造器)
+      var extendsObj = {
+        updated() {
+          console.log('extends的updated')
+        },
+      }
+      var addConsole = {
+        updated() {
+          console.log('minxins的updated')
+        },
+        methods: {
+          add() {
+            console.log('extends的方法')
+            this.temp += 10
+          }
+        },
+      }
+
+      Vue.mixin({
+        updated() {
+          console.log('全局的混入')
+        },
+      })
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          temp: 12
+        },
+        methods: {
+          add() {
+            console.log('原生的方法')
+            this.temp += 10
+          }
+        },
+        updated() {
+          console.log('原生updated后执行')
+        },
+        extends: extendsObj,
+        mixins: [addConsole], //注意这里不是字符串
+        delimiters: ['${', '}'] // 重新定义{{}}
+      })
+    </script>
+  </body>
+</html>
