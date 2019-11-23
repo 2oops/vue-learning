@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">
+    </div>
+    <button onclick="destroyed()">卸载</button>
+    <button onclick="updated()">更新</button>
+    <button onclick="tick()">nextTick</button>
+    <button onclick="add()">add</button>
+    <button onclick="reduce()">reduceOnce</button>
+    <script type="text/javascript">
+      var jspang = Vue.extend({
+        template: `<div><h2>{{msg}}</h2> <p>{{count}}</p></div>`,
+        data: function() {
+          return {
+            msg: 'hello jspang',
+            count: 0
+          }
+        },
+        destroyed: function() {
+          console.log("destroyed")
+        },
+        methods: {
+          reduce() {
+            this.count --
+          }
+        },
+      })
+
+      var vm = new jspang().$mount('#app')
+
+      vm.$on('add', () => {
+        console.log("add")
+        vm.count += 1
+      })
+
+      vm.$once('reduce', () => {
+        console.log('reduce only once')
+        vm.count --
+      })
+
+      function reduce() {
+        vm.$emit('reduce')
+      }
+
+      function add() {
+        vm.$emit('add')
+      }
+
+      function updated() {
+        console.log("force update")
+        vm.$forceUpdate()
+      }
+      
+      function destroyed() {
+        vm.$destroy()
+      }
+
+      function tick() {
+        vm.msg = 'update msg info'
+        vm.$nextTick(() => {
+          console.log('has updated')
+        })
+      }
+    </script>
+  </body>
+</html>

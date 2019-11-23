@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello 2oops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h4>hello 2oops</h4>
+    <hr>
+
+    <div id="app">
+      <jspang>
+        <span slot='name'>{{info.name}}</span>
+        <span slot='age'>{{info.age}}</span>
+        <span slot='sex'>{{info.sex}}</span>
+      </jspang>
+    </div>
+
+    <template id="temp">
+      <div>
+        <p>姓名：<slot name="name"></slot></p>
+        <p>年龄:<slot name="age"></slot></p>
+        <p>性别：<slot name="sex"></slot></p>
+      </div>
+    </template>
+    <script type="text/javascript">
+      var jspang = {
+        template: '#temp'
+      }
+      var app = new Vue({
+        el: '#app',
+        data: {
+          info: {
+            name: '2oops',
+            age: 20,
+            sex: 'male'
+          }
+        },
+        components: {
+          "jspang": jspang
+        }
+      })
+    </script>
+  </body>
+</html>
